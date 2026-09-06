@@ -1,13 +1,25 @@
 # h3-EternalHomework
 Tunkeutumistestaus
 
-x) Lue/katso/kuuntele ja tiivistä. (Tässä x-alakohdassa ei tarvitse tehdä testejä tietokoneella, vain lukeminen tai kuunteleminen ja tiivistelmä riittää. Tiivistämiseen riittää muutama ranskalainen viiva.)
-€ Jaswal 2020: Mastering Metasploit - 4ed: Chapter 1: Approaching a Penetration Test Using Metasploit (kohdasta Conducting a penetration test with Metasploit luvun loppuun eli "Summary" loppuun)
+Metasploitin peruskomentoja ja termejä ovat muun muassa Exploits (haavoittuvuuden hyödyntämiskoodi), Payload (kohteessa suoritettava koodi), Auxiliary (apuohjelmat mm. skannaukseen), Encoders (piilottelukoodit) ja Meterpreter (muistissa toimiva monipuolinen payload).
+
+Metasploitin etuihin perinteisiin manuaalisiin tekniikoihin verrattuna kuuluvat sen avoin lähdekoodi, helppo laajojen verkkojen testaus CIDR-osoitteilla, älykäs payloadien hallinta sekä puhtaammat poistumiset kohteesta ilman sovellusten kaatumista.
+
+Tiedonkeruussa ja tiedonhallinnassa hyödynnetään tietokantoja kuten PostgreSQL- ja workspace-toimintoa erottelemaan eri projektien tiedot toisistaan.
+
+Skannauksessa käytetään Nmapia (db_nmap) palveluiden tunnistamiseen ja haavoittuvuuksien löytämiseen.
+
+Hyökkäysvaiheessa haavoittuvuus varmistetaan Metasploitin moduleilla ja kohteeseen murtaudutaan, minkä jälkeen komentorivi voidaan päivittää vakaammaksi Meterpreter-istunnoksi.
+
+Jälkikäyttövaiheessa (post-exploitation) hyödynnetään prosessien migrointia piiloutumiseen, verkon reititystä (autoroute) liikenteen ohjaamiseen, incognito-lisäosaa käyttäjätunnisteiden (tokens) varastamiseen sekä mimikatz/kiwi-työkaluja selväkielisten salasanojen ja tiivisteiden dumppaamiseen.
+
+Esimerkkitapauksessa kompromisoidun koneen kautta onnistuttiin etenemään ja saamaan pääsy verkon toisella alueella sijaitsevaan Domain Controlleriin (pivoting).
 
 _________________________________________________________________________________________________________________________________________________________________
 
 a) Mitä 'nmap -sn' tekee? Älä arvaa, vaan perustele lähteillä. Mistä tiedät, että käyttämäsi lähde on luotettava?
-Ping Scan / No port Scan. Se tekee verkon laitetunnistusta eli etsii verkossa olevia aktiivisia koneita ilman, että se skannaa niiden portteja.
+
+Ping Scan / No-port Scan. Se tekee verkon laitetunnistusta eli etsii verkossa olevia aktiivisia koneita ilman, että se skannaa niiden portteja.
 Lähteenä luotan tässä MAN sivuja nmpaille. Se lähettää verkkoon erilaisia probe-paketteja. ICMP echo requestit, TCP SYN/ACK -paketteja tai ARP-kyselyitä riippuen ollaanko samassa aliverkossa tarkistaakseen, mitkä IP-osoitteet ovat elossa ja vastaavat.
 _________________________________________________________________________________________________________________________________________________________________
 
