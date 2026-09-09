@@ -132,7 +132,15 @@ i) Demonstroi Meterpretrin ominaisuuksia.
 <img width="1392" height="952" alt="image" src="https://github.com/user-attachments/assets/dc4789eb-3a39-4c91-aca7-e99ed29f9edc" />
 <img width="1392" height="952" alt="image" src="https://github.com/user-attachments/assets/b7823977-4bd6-49c0-82eb-0a3f1d2984eb" />
 
+Istuntoon siirtyminen: Komennolla sessions -i 3 avataan yhteys valmiiseen Meterpreter-istuntoon numero 3.
 
+Järjestelmätietojen tarkistus (sysinfo): Komento hakee ja näyttää kohdekoneen tekniset tiedot:
+
+Käyttöjärjestelmä: Ubuntu 8.04 (Linux 2.6.24-16-server)
+
+Arkkitehtuuri: i686
+
+Meterpreter-tyyppi: x86/linux
 ______________________________________________________________________________________________________________________________________________________
 
 j) Tallenna shell-sessio tekstitiedostoon script-työkalulla (script -fa log001.txt) tai tmux:lla.
