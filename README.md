@@ -1,13 +1,13 @@
 # h3-EternalHomework
 Tunkeutumistestaus
 
-Metasploitin peruskomentoja ja termejä ovat muun muassa Exploits (haavoittuvuuden hyödyntämiskoodi), Payload (kohteessa suoritettava koodi), Auxiliary (apuohjelmat mm. skannaukseen), Encoders (piilottelukoodit) ja Meterpreter (muistissa toimiva monipuolinen payload).
+Metasploitin peruskomentoja ja termejä ovat: Exploits (haavoittuvuuden hyödyntämiskoodi), Payload (kohteessa suoritettava koodi), Auxiliary (apuohjelmat mm. skannaukseen), Encoders (piilottelukoodit) ja Meterpreter (muistissa toimiva monipuolinen payload).
 
 Metasploitin etuihin perinteisiin manuaalisiin tekniikoihin verrattuna kuuluvat sen avoin lähdekoodi, helppo laajojen verkkojen testaus CIDR-osoitteilla, älykäs payloadien hallinta sekä puhtaammat poistumiset kohteesta ilman sovellusten kaatumista.
 
-Tiedonkeruussa ja tiedonhallinnassa hyödynnetään tietokantoja kuten PostgreSQL- ja workspace-toimintoa erottelemaan eri projektien tiedot toisistaan.
+Tiedonkeruussa ja tiedonhallinnassa hyödynnetään tietokantoja  PostgreSQL- ja workspace-toimintoa erottelemaan eri projektien tiedot toisistaan.
 
-Skannauksessa käytetään Nmapia (db_nmap) palveluiden tunnistamiseen ja haavoittuvuuksien löytämiseen.
+Skannauksessa käytetään Nmapia (db_nmap) palveluiden tunnistukseen ja haavoittuvuuksien löytämiseen.
 
 Hyökkäysvaiheessa haavoittuvuus varmistetaan Metasploitin moduleilla ja kohteeseen murtaudutaan, minkä jälkeen komentorivi voidaan päivittää vakaammaksi Meterpreter-istunnoksi.
 
@@ -15,13 +15,15 @@ Jälkikäyttövaiheessa (post-exploitation) hyödynnetään prosessien migrointi
 
 Esimerkkitapauksessa kompromisoidun koneen kautta onnistuttiin etenemään ja saamaan pääsy verkon toisella alueella sijaitsevaan Domain Controlleriin (pivoting).
 
-_________________________________________________________________________________________________________________________________________________________________
+Lähde: https://www.oreilly.com/library/view/mastering-metasploit/9781838980078/B15076_01_Final_ASB_ePub.xhtml#_idParaDest-31
+
+______________________________________________________________________________________________________________________________________________________
 
 a) Mitä 'nmap -sn' tekee? Älä arvaa, vaan perustele lähteillä. Mistä tiedät, että käyttämäsi lähde on luotettava?
 
 Ping Scan / No-port Scan. Se tekee verkon laitetunnistusta eli etsii verkossa olevia aktiivisia koneita ilman, että se skannaa niiden portteja.
 Lähteenä luotan tässä MAN sivuja nmpaille. Se lähettää verkkoon erilaisia probe-paketteja. ICMP echo requestit, TCP SYN/ACK -paketteja tai ARP-kyselyitä riippuen ollaanko samassa aliverkossa tarkistaakseen, mitkä IP-osoitteet ovat elossa ja vastaavat.
-_________________________________________________________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________________________________________________
 
 b) Tallenna porttiskannauksen tuloksia Metasploitin tietokantoihin. Skannaa niin, että Metasploitable tulee mukaan. Kannattaa ottaa mukaan ainakin versioskannaus -sV (joka on banner grabbing plus).
 
@@ -33,7 +35,9 @@ Komento käynnisti Nmap-skannauksen kohteeseen (192.168.128.2) ja käytti versio
 
 Etuliite db_ ohjasi skannauksen tulokset suoraan Metasploitin sisäiseen PostgreSQL-tietokantaan, jotta tietoja ei tarvitsisi erikseen tuoda tiedostoista.
 
-_________________________________________________________________________________________________________________________________________________________________
+Nikhil Jaswalin teoksesta Mastering Metasploit (4th Edition), luvusta Chapter 1: Approaching a Penetration Test Using Metasploit
+
+______________________________________________________________________________________________________________________________________________________
 
 c) Tarkastele Metasploitin tietokantoihin tallennettuja tietoja komennoilla "hosts" ja "services". Kokeile suodattaa näitä listoja tai hakea niistä.
 
@@ -48,7 +52,7 @@ services: Näytti listan löydetyistä avoimista porteista, protokollista ja pal
 
 Suodatus ja haku (hosts -S ja services -p 21): näytti miten massiivisesta tietomäärästä voidaan rajata ja hakea  haluttuja kohteita tai tiettyjä portteja (kuten FTP-porttia 21) jatkohyökkäyksiä varten.
 
-_________________________________________________________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________________________________________________
 
 d) Internet famous. Etsi Metasploitablen mukana tulevista hyökkäyksistä (en: exploits; search) sellainen, joka on ollut julkisuudessa.
 
@@ -57,11 +61,11 @@ d) Internet famous. Etsi Metasploitablen mukana tulevista hyökkäyksistä (en: 
 jos valitaan esimerkiksi vsftpd_234_backdoor -haavoittuvuuden:
 
 Vuonna 2011 vsftpd (Very Secure FTP Daemon) -ohjelmiston version 2.3.4 viralliseen latauslähteeseen murtauduttiin, ja sen lähdekoodiin ujutettiin salainen takaportti.
-Jos käyttäjä kirjautui FTP-palvelimelle käyttäjätunnuksella, jonka perässä oli hymynaama (:)), ohjelma avasi salaa kuunteluportin 6200. Tähän porttiin kuka tahansa pystyi yhdistämään suoraan ja saamaan järjestelmästä täydet pääkäyttäjän (root) oikeudet ilman salasanaa.
+Jos käyttäjä kirjautuu FTP-palvelimelle käyttäjätunnuksella, jonka perässä oli hymynaama (:)), ohjelma avaa salaa kuunteluportin 6200. Tähän porttiin kuka tahansa pystyy yhdistämään suoraan ja saamaan järjestelmästä täydet pääkäyttäjän (root) oikeudet ilman salasanaa.
 
 Miksi "Internet famous"? Tapaus oli valtava uutinen kyberturvallisuusmaailmassa, koska kyseessä oli suositun avoimen lähdekoodin FTP-palvelimen virallinen lähdekoodikompromissi ("supply chain attack"), ja sen helppokäyttöisyys teki siitä yhden historian tunnetuimmista opetus- ja murtoesimerkeistä.
 
-_________________________________________________________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________________________________________________
 
 e) Vertaile nmap:n omaa tiedostoon tallennusta (-oA foo) ja db_nmap:n tallennusta tietokantoihin. Mitkä ovat eri tiedostomuotojen ja Metasploitin tietokannan hyvät puolet?
 
@@ -81,7 +85,7 @@ Tiedot ovat heti hyödynnettävissä Metasploitin sisällä (esimerkiksi hyökk�
 Kaikki skannaukset, isännät (hosts) ja palvelut (services) pysyvät siististi yhdessä paikassa ilman erillistä tiedostojen tuontia tai hallintaa joten keskitetty kanta.
 Tietokannasta data on helppo hakea, suodattaa ja tarkastella kohteita suoraan konsolikomennoilla (hosts, services).
 
-_________________________________________________________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________________________________________________
 
 f) Murtaudu Metasploitablen vsftpd-palveluun
 
@@ -89,7 +93,7 @@ f) Murtaudu Metasploitablen vsftpd-palveluun
 <img width="1286" height="843" alt="image" src="https://github.com/user-attachments/assets/fe3f21e3-db17-459c-ac5c-b88dde6b28da" />
 
 
-_________________________________________________________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________________________________________________
 
 g) Kerää levittäytymisessä (lateral movement) tarvittavaa tietoa metasploitablesta. Analysoi tiedot. Selitä, miten niitä voisi hyödyntää.
 
@@ -106,7 +110,12 @@ Tunnuksien kierrätys (Credential Reuse): Jos konfiguraatiotiedostoista löytyy 
 Mikäli löytää käyttäjältä yksityisen SSH-avaimen, hyökkääjä voi kirjautua sen avulla suoraan muihin järjestelmiin, joissa sama avain on käytössä ilman salasanojen arvuuttelua.
 
 Jos koneella on pääsy sellaiseen sisäverkkoon, johon hyökkääjän Kali-kone ei suoraan yllä, murrettua konetta voidaan käyttää "välityspalvelimena" (Pivotpoint), jonka kautta hyökätään verkon muihi koneisiin.
-_________________________________________________________________________________________________________________________________________________________________
+
+Lähteet: Nikhil Jaswal – Mastering Metasploit (4th Edition)
+MITRE ATT&CK -kehys (Framework)
+PTES (Penetration Testing Execution Standard)
+SANS Institute tai HackTricks
+______________________________________________________________________________________________________________________________________________________
 
 h) Murtaudu Metasploitableen jollain toisella tavalla. (Jos tämä kohta on vaikea, voit tarvittaessa turvautua verkosta löytyviin läpikävelyohjeisiin. Merkitse silloin 
 raporttiin, missä määrin tarvitsit niitä).
@@ -115,7 +124,8 @@ raporttiin, missä määrin tarvitsit niitä).
 
 Katselin youtubesta ohjevideoita https://www.youtube.com/watch?v=VmBTZ8xMG14 ja konsultoin samalla geminiä. 
 
-_________________________________________________________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________________________________________________
+
 i) Demonstroi Meterpretrin ominaisuuksia.
 
 
@@ -123,15 +133,16 @@ i) Demonstroi Meterpretrin ominaisuuksia.
 <img width="1392" height="952" alt="image" src="https://github.com/user-attachments/assets/b7823977-4bd6-49c0-82eb-0a3f1d2984eb" />
 
 
-_________________________________________________________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________________________________________________
+
 j) Tallenna shell-sessio tekstitiedostoon script-työkalulla (script -fa log001.txt) tai tmux:lla.
 
 <img width="1392" height="952" alt="image" src="https://github.com/user-attachments/assets/d1103f15-e760-4fd5-ad9f-4a6a48922bca" />
 
-_________________________________________________________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________________________________________________
 
 k) Pivot point. Laita kaikki harjoituksen tiedostot (script -fa, nmap -oA...) samaan kansioon. Hae sopiva pivot point (sovellus, versio, osoite, MAC-numero) 'grep -r' -komennolla. Keksi uskottava esimerkkikysymys, johon haet vastausta.
 
 <img width="1392" height="952" alt="image" src="https://github.com/user-attachments/assets/5dc0ec0a-eed6-4d71-9a1e-d0e38776aedf" />
 
-_________________________________________________________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________________________________________________
