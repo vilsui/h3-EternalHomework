@@ -13,7 +13,7 @@ Hyökkäysvaiheessa haavoittuvuus varmistetaan Metasploitin moduleilla ja kohtee
 
 Jälkikäyttövaiheessa (post-exploitation) hyödynnetään prosessien migrointia piiloutumiseen, verkon reititystä (autoroute) liikenteen ohjaamiseen, incognito-lisäosaa käyttäjätunnisteiden (tokens) varastamiseen sekä mimikatz/kiwi-työkaluja selväkielisten salasanojen ja tiivisteiden dumppaamiseen.
 
-Esimerkkitapauksessa kompromisoidun koneen kautta onnistuttiin etenemään ja saamaan pääsy verkon toisella alueella sijaitsevaan Domain Controlleriin (pivoting).
+Esimerkkitapauksessa kophdekoneen kautta onnistuttiin etenemään ja saamaan pääsy verkon toisella alueella sijaitsevaan Domain Controlleriin (pivoting).
 
 Lähde: https://www.oreilly.com/library/view/mastering-metasploit/9781838980078/B15076_01_Final_ASB_ePub.xhtml#_idParaDest-31
 
@@ -142,7 +142,7 @@ Arkkitehtuuri: i686
 
 Meterpreter-tyyppi: x86/linux
 
-Käyttöoikeuksien tarkistus (getuid): Komento vahvistaa, että istunto pyörii korkeimmilla mahdollisilla oikeuksilla eli pääkäyttäjänä (root).
+Käyttöoikeuksien tarkistus (getuid): Komento vahvistaa, että istunto pyörii korkeimmilla mahdollisilla oikeuksilla eli pääkäyttäjänä root.
 
 Laajennuksen rajoitus (hashdump): Koska käytössä on Linux-pohjainen Meterpreter (x86/linux), Windows-järjestelmille tarkoitettu priv-laajennus ei tue sitä, jolloin suora hashdump-komento epäonnistuu.
 
