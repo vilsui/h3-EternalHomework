@@ -141,6 +141,12 @@ Käyttöjärjestelmä: Ubuntu 8.04 (Linux 2.6.24-16-server)
 Arkkitehtuuri: i686
 
 Meterpreter-tyyppi: x86/linux
+
+Käyttöoikeuksien tarkistus (getuid): Komento vahvistaa, että istunto pyörii korkeimmilla mahdollisilla oikeuksilla eli pääkäyttäjänä (root).
+
+Laajennuksen rajoitus (hashdump): Koska käytössä on Linux-pohjainen Meterpreter (x86/linux), Windows-järjestelmille tarkoitettu priv-laajennus ei tue sitä, jolloin suora hashdump-komento epäonnistuu.
+
+Vaihtoehtoinen tietojen luku (cat /etc/shadow): Koska suora tiivisteiden dumppaus ei toiminut Linuxissa samalla komennolla, tiedot kierretään lukemalla järjestelmän salasanatiivisteet suoraan tiedostojärjestelmästä (/etc/shadow). Tulosteesta näkyvät kohdekoneen käyttäjätilien (kuten root, msfadmin, postgres ja mysql) salasanatiivisteet.
 ______________________________________________________________________________________________________________________________________________________
 
 j) Tallenna shell-sessio tekstitiedostoon script-työkalulla (script -fa log001.txt) tai tmux:lla.
